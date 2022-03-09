@@ -1,0 +1,33 @@
+.img{
+    height: 18rem;
+    width: 30rem;
+}
+
+.name{
+    font-size: 2.5rem;
+    text-align-last: center;
+    color:white;
+    text-decoration:underline;
+}
+
+.div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem;
+    padding: 1rem;
+    background-color: black;
+    border: white solid;
+}
+
+.text{
+    color:white;
+    font-size: 1.2rem;
+}
+
+.divGif{
+    height: 100vh; 
+    display:flex;
+    align-items: center;
+    align-self: center;
+}

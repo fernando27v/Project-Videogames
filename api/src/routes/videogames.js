@@ -11,7 +11,6 @@ async function getGames(req,res){
     let page=1;
     let allGames= [];
     let GamesByName=[];
-    let DBGames= [];
     const {name} = req.query;
 
     try{    
@@ -59,7 +58,8 @@ async function getGames(req,res){
        }))
        ++page
     }
-       const responseDB = await Videogame.findAll({include:[{model:Genre,attributes:["name"],through:{attributes:[]}},{model:Platform,attributes:["name"],through:{attributes:[]}}]})
+       const responseDB = await Videogame.findAll({include:[{model:Genre,attributes:["name"],through:{attributes:[]}},
+                                                        {model:Platform,attributes:["name"],through:{attributes:[]}}]})
                                                     
 
        
@@ -72,8 +72,19 @@ async function getGames(req,res){
 
 async function getGamesById(req,res){
     const {id}= req.params
+
+   
+        
+
+
     try{
-    const responseApiId = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+        if(isNaN(id)){
+            const responseDBId = await Videogame.findAll({where:{id:id},include:[{model:Genre,attributes:["name"],through:{attributes:[]}},
+            {model:Platform,attributes:["name"],through:{attributes:[]}}]})
+
+            res.json(responseDBId)
+        }else{
+            const responseApiId = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
         if(responseApiId.data){
             res.status(200).json({
             id:responseApiId.data.id,
@@ -85,6 +96,9 @@ async function getGamesById(req,res){
             genres: responseApiId.data.genres.map((g)=> g.name)
         })
     }
+        }
+
+    
 
     }catch(err){
         res.status(404).send({error:'Videogame not found'})
@@ -102,20 +116,38 @@ async function postGames(req,res){
 
 
 try{
-    const game  = await Videogame.create({name:name,description:description,rating:rating,released:released})
-    
-    platforms.forEach(async (p) =>{
+    if(name==="" || description===""){
+        res.status(400).send({error:"Datos enviados incorrectamente"})
+    }else if(released === ""){
+        const game  = await Videogame.create({name:name,description:description,rating:rating})
+
+          platforms.forEach(async (p) =>{
         const pl = await Platform.findOne({where:{name:p}})
         await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
     
     })
-        
-    
-    genres.forEach(async (g) =>{
+           genres.forEach(async (g) =>{
         const gr = await Genre.findOne({where:{name:g}})
         await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
     })
 
+    }else{
+         const game  = await Videogame.create({name:name,description:description,rating:rating,released:released})
+         
+         platforms.forEach(async (p) =>{
+            const pl = await Platform.findOne({where:{name:p}})
+            await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
+        
+        })
+            
+        
+        genres.forEach(async (g) =>{
+            const gr = await Genre.findOne({where:{name:g}})
+            await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
+        })
+    }
+
+  
     res.status(200).send(game)
     
 }catch(err){

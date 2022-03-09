@@ -51,12 +51,12 @@ Platform.belongsToMany(Videogame, {through: 'Videogame_Platforms'});
   
     response[0].data.results.forEach(async (g) => {
     try{
-      await Genre.create({id: g.id ,name: g.name})
+      await Genre.findOrCreate({where:{id: g.id ,name: g.name}})
     }catch(err){console.error(err)}}
     )
     response[1].data.results.forEach(async (p) => {
       try{
-        await Platform.create({id: p.id ,name: p.name})
+        await Platform.findOrCreate({where:{id: p.id ,name: p.name}})
       }catch(err){console.error(err)}}
       )
     }catch(err){console.error(err)}

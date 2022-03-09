@@ -1,0 +1,22 @@
+.img{
+    height: 8rem;
+    width: 12rem;
+}
+
+.name{
+    font-size: 1.1rem;
+    text-align-last: center;
+    color:white;
+}
+
+.div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.text{
+    color:white;
+    font-size: 0.7rem;
+}

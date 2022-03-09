@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech&display=swap');
+
+
+.Button{
+font-family: 'Press Start 2P', cursive;
+font-size: 32px;
+margin: 1rem;
+padding: 0.5rem;
+border-radius: 0.5rem;
+transition: 0.5s;
+}
+.Button:hover{
+    background-color: red;
+    color: white;
+}
+
+.Page{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+overflow: hidden;
+position : absolute;
+background: url(783635.jpg); 
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+width: 100%;
+height:100vh;
+}
+
+.Text{
+font-family: 'Share Tech', sans-serif;
+font-size: 100px;
+-webkit-text-stroke: 2px black;
+color:white;
+text-align: center;
+}
+
+@media (max-width: 600px) {
+    .Text {
+      font-size: 64px;
+    }
+}
