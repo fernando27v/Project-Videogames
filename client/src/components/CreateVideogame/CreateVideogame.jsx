@@ -90,41 +90,52 @@ rating: 0
       rating: input.rating,
       genres: genre,
       platforms: platform
-    })//Envio de formulario 
+    })  //Envio de formulario 
+
+    setInput({
+      name: "",
+      description:"",
+      released: "",
+      rating: ""
+    })
+    setGenre([])
+    setPlatform([])
+    // Vaciado de inputs y arreglos
 
 
-    if(json.data.error){
-      alert(json.data.error)
+    if(json.error){
+      alert(`${json.error}`)
     }else{
       alert("Juego creado correctamente")
     }
   }
 
 
+
   return (
     <div className={styles.div}> 
       <form onSubmit={handleSubmit} className={styles.form}>
-        <div>
+        <div className={styles.divInputs}>
         <label htmlFor="" className={styles.labels}>Nombre: </label>
       <input type='text' name='name'  onChange={handleChange} value={input.name} autoComplete='off' className={styles.inputs}></input>
       <p className={styles.errors}>{errors.name}</p> 
       </div>
-      <div>
+      <div className={styles.divDescription}>
       <label htmlFor="" className={styles.labels}>Descripción: </label>
       <textarea name='description'  onChange={handleChange} value={input.description} autoComplete='off' className={styles.inputs}></textarea>
       <p className={styles.errors}>{errors.description}</p>
       </div>
-      <div>
+      <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Fecha de lanzamiento: </label>
       <input type='date' name='released' onChange={handleChange} value={input.released} autoComplete='off' className={styles.inputs}></input>
       <p className={styles.errors}>{errors.released}</p>
       </div>
-      <div>
+      <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Rating: </label>
-      <input type='text' name='rating' onChange={handleChange} value={input.rating} autoComplete='off' className={styles.inputs}></input>
+      <input type='text' name='rating' onChange={handleChange} value={input.rating} autoComplete='off' className={styles.inputs} placeholder="0-5"></input>
       <p className={styles.errors}>{errors.rating}</p>
       </div>
-      <div>
+      <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Generos: </label>
       <select name="genres" onChange={handleChange} className={styles.inputs}>
       {genres? genres.results?.map((g)=> <option key={g.id} value={g.name}>{g.name}</option>) :<option >Generos no encontrados</option>}
@@ -135,7 +146,7 @@ rating: 0
       </div> {/*  Mapeo de Generos para enseñarlas de manera legible */}
       {ArrayErrors(1)}
       </div>
-      <div>
+      <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Plataformas: </label>
       <select name="platforms" onChange={handleChange} className={styles.inputs}>
       {platforms? platforms.results?.map((p)=> <option key={p.id} value={p.name}>{p.name}</option>) :<option >Plataformas no encontradas</option>}

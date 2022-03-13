@@ -1,6 +1,7 @@
 .img{
     height: 8rem;
     width: 12rem;
+    border-radius: 20px;
 }
 
 .name{

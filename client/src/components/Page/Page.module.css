@@ -1,0 +1,25 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.ul{
+    padding:0;
+}
+
+.a{
+    background-color: rgba(80, 80, 80, 0.514);
+    padding: 10px;
+    color: white;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 10px;
+}
+
+.active{
+    background-color: red;
+    color:white;
+    padding:10px;
+}

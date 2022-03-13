@@ -5,33 +5,18 @@
     align-content: center;
     align-items: center;
     background-size: cover;
+    background-color: rgba(0, 0, 0, 0.671);
 }
 
 .card{
     margin: 1rem;
     padding: 1rem;
     background-color: black;
+    border-radius: 20px;
 }
-
-.div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.671);
-}
-
-.text{
-    font-size: 2rem;
-    color:white;
-}
-
 .divGif{
     height: 100vh; 
     display:flex;
     align-items: center;
     align-self: center;
-}
-
-.divAll{
-    display: contents;
 }

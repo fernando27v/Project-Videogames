@@ -1,9 +1,10 @@
 .Home{
 background: url(body1.jpg); 
 background-position:center;
-background-size: auto;
-width: 100%;
-height:100%;
+background-repeat: repeat;
+background-size:auto;
+ width: 100%;
+height: 100vh; 
 }
 
 .cards{
@@ -12,4 +13,5 @@ height:100%;
     justify-content: center;
     flex-direction: column;
     align-content: center;
+    background: rgb(75, 74, 74) 
 }

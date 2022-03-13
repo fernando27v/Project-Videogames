@@ -1,37 +1,34 @@
 import React from 'react'
 import {useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import Card from '../Card/Card'
-import {getVideogames} from '../../actions';
-import gif from '../loading-11.gif'
-import styles from './Cards.module.css'
+import {getVideogames,getGames} from '../../actions';
+import gif from '../loading-11.gif';
+import styles from './Cards.module.css';
+import Created from '../Created/Created';
+import Existed from '../Existed/Existed';
+import All from '../All/All';
 
 function Cards() {
-  const dispatch = useDispatch()
-  const allVideoGames = useSelector((state) => state.allVideoGames)
-  
+
+  const dispatch = useDispatch();
+  const allVideoGames = useSelector((state)=> state.allVideoGames)
+  const filterGames = useSelector((state) => state.filterGames)
+  const filterOrder = useSelector((state) => state.filterOrder)
+
   useEffect(()=>{
     dispatch(getVideogames())
 },[dispatch])
 
-if((Object.values(allVideoGames)).length===0){
- return <div className={styles.divGif}><img src={gif} alt="Cargando" /></div>
-}
+
+if(allVideoGames.length===0){
+  return <div className={styles.divGif}><img src={gif} alt="Cargando" /></div>
+ }
 
   return (
     <div className={styles.div}>
-      <span className={styles.text}>Juegos existentes</span>
-      <div className={styles.divCards}>
-      {allVideoGames.allGames? allVideoGames.allGames.map((vg) => <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} 
-      bg={vg.background_image} genres={vg.genres}/></div>)
-      : <span>Juegos no encontrados</span>}
-      </div>
-      <span className={styles.text}>Juegos Creados</span>
-      <div className={styles.divCards}>
-      {allVideoGames.responseDB? allVideoGames.responseDB.map((vg) => <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} 
-      genres={vg.Genres}/></div>)
-      : <span>Juegos no encontrados</span>}
-      </div>
+      {filterGames === "existed" && <Existed paginado={true}/>}
+      {filterGames === "created" && <Created paginado={true}/>}
+      {(filterGames === "all" )  && <All/>}
     </div>
   )
 }
