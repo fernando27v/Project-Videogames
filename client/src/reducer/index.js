@@ -31,7 +31,7 @@ export default function reducer(state = inicialState,action){
                 allVideoGames: action.payload,
                 totalVideogames: totalVideoGames,
                 existed: action.payload.allGames,
-                created: action.payload.responseDB
+                created: action.payload.responseDB,
             }
 
 
@@ -54,6 +54,13 @@ export default function reducer(state = inicialState,action){
                 }
 
         case FILTER_GAMES:
+                if(action.payload === "created" && state.filterGenres !="all"){
+                    return {
+                        ...state,
+                        filterGames: action.payload,
+                        arrayFill: state.created.filter(vg => (vg.Genres.find((g)=> g.name === state.filterGenres)))
+                    }
+                }
                   return{
                         ...state,
                         filterGames: action.payload
@@ -61,7 +68,7 @@ export default function reducer(state = inicialState,action){
      
         case FILTER_GENRES:
 
-            if((action.payload != "all" && action.payload != "") && (state.filterGames=== "all")){
+            if((action.payload != "all") && (state.filterGames=== "all")){
                 return{
                     ...state,
                     filterGenres: action.payload,
@@ -69,13 +76,13 @@ export default function reducer(state = inicialState,action){
                         return (vg.Genres ? (vg.Genres?.find((g)=> g.name === action.payload)) : (vg.genres?.includes(action.payload)))
                     })
                 }
-            }else if((action.payload != "all" && action.payload != "") && (state.filterGames=== "created")){
+            }else if((action.payload != "all") && (state.filterGames=== "created")){
                 return{
                     ...state,
                     filterGenres: action.payload,
                     arrayFill: state.created.filter(vg => (vg.Genres.find((g)=> g.name === action.payload)))
                 }
-            }else if((action.payload != "all" && action.payload != "") && (state.filterGames=== "existed")){
+            }else if((action.payload != "all") && (state.filterGames=== "existed")){
                 return{
                     ...state,
                     filterGenres: action.payload,
@@ -89,84 +96,169 @@ export default function reducer(state = inicialState,action){
             }
 
         case FILTER_ORDER:
-            if((action.payload === "asc") && (state.filterGames=== "all")){
-                var ordenado = state.totalVideogames
+            if((action.payload === "asc") && (state.filterGames=== "all") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (a.name < b.name) {return -1;}
                     if (a.name > b.name) {return 1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar ascendentemente en todos mis juegos y hay un filtro de generos activado 
                     ...state,
                     filterOrder: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "desc") && (state.filterGames=== "all")){
-                 var ordenado = state.totalVideogames;
+            }else if((action.payload === "desc") && (state.filterGames=== "all") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (b.name > a.name) {return 1;}
                     if (b.name < a.name) {return -1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar descendentemente en todos los juegos y hay un filtro de generos activado 
                     ...state,
                     filterOrder: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "asc") && (state.filterGames=== "existed")){
-                var ordenado = state.existed;
+            }else if((action.payload === "asc") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (a.name < b.name) {return -1;}
                     if (a.name > b.name) {return 1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar ascendentemente en los juegos existentes y hay un filtro de generos activado 
                     ...state,
                     filterOrder: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "desc") && (state.filterGames=== "existed")){
-                var ordenado = state.existed
+            }else if((action.payload === "desc") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (b.name > a.name) {return 1;}
                     if (b.name < a.name) {return -1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar descendentemente en los juegos existentes y hay un filtro de generos activado 
                     ...state,
                     filterOrder: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "asc") && (state.filterGames=== "created")){
-                var ordenado = state.created
+            }else if((action.payload === "asc") && (state.filterGames=== "created") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (a.name < b.name) {return -1;}
                     if (a.name > b.name) {return 1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar ascendentemente en los juegos creados y hay un filtro de generos activado 
                     ...state,
                     filterOrder: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "desc") && (state.filterGames=== "created")){
-                 var ordenado = state.created
+            }else if((action.payload === "desc") && (state.filterGames=== "created") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (b.name > a.name) {return 1;}
                     if (b.name < a.name) {return -1;}
                     return 0;
                 }
+                return {//Si se quiere ordenar descendentemente en los juegos creados y hay un filtro de generos activado 
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "asc") && (state.filterGames=== "all") && (state.filterGenres ==="all")){
+                var ordenado = state.totalVideogames.map((vg) => vg)
+                function SortArray(a, b){
+                    if (a.name < b.name) {return -1;}
+                    if (a.name > b.name) {return 1;}
+                    return 0;
+                }
+                return { //Si quiero ordenar ascendentemente en todos los juegos sin haber ningun genero cargado
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "desc") && (state.filterGames=== "all") && (state.filterGenres ==="all")){
+                var ordenado = state.totalVideogames.map((vg) => vg)
+                function SortArray(a, b){
+                    if (b.name > a.name) {return 1;}
+                    if (b.name < a.name) {return -1;}
+                    return 0;
+                }
+                return {//Si quiero ordenar descendentemente en todos los juegos sin haber ningun genero cargado
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "asc") && (state.filterGames=== "existed") && (state.filterGenres ==="all")){
+                var ordenado = state.existed.map((vg) => vg)
+                function SortArray(a, b){
+                    if (a.name < b.name) {return -1;}
+                    if (a.name > b.name) {return 1;}
+                    return 0;
+                }
+                return {//Si quiero ordenar ascendentemente en los juegos existentes sin haber ningun genero cargado
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "desc") && (state.filterGames=== "existed")  && (state.filterGenres ==="all")){
+                var ordenado = state.existed.map((vg) => vg)
+                function SortArray(a, b){
+                    if (b.name > a.name) {return 1;}
+                    if (b.name < a.name) {return -1;}
+                    return 0;
+                }
+                return {//Si quiero ordenar descendentemente en los juegos existentes sin haber ningun genero cargado
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "asc") && (state.filterGames=== "created")  && (state.filterGenres ==="all")){
+                var ordenado = state.created.map((vg) => vg)
+                function SortArray(a, b){
+                    if (a.name < b.name) {return -1;}
+                    if (a.name > b.name) {return 1;}
+                    return 0;
+                }//Si quiero ordenar ascendentemente en los juegos creados sin haber ningun genero cargado
                 return {
                     ...state,
                     filterOrder: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if ((action.payload === "all") && (state.filterGames=== "all")){
+            }else if((action.payload === "desc") && (state.filterGames=== "created")  && (state.filterGenres ==="all")){
+                var ordenado = state.created.map((vg) => vg)
+                function SortArray(a, b){
+                    if (b.name > a.name) {return 1;}
+                    if (b.name < a.name) {return -1;}
+                    return 0;
+                }//Si quiero ordenar descendentemente en los juegos creados sin haber ningun genero cargado
                 return {
                     ...state,
                     filterOrder: action.payload,
-                    arrayFill: state.totalVideogames
+                    arrayFill: ordenado.sort(SortArray)
                 }
+            }else if((action.payload === "all") && (state.filterGames=== "all") && (state.filterGenres !="all")){
+                return {
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: state.totalVideogames?.filter((vg) => {
+                        return (vg.Genres ? (vg.Genres?.find((g)=> g.name === state.filterGenres)) : (vg.genres?.includes(state.filterGenres)))})
+                }//Caso default 
+            }else if((action.payload === "all") && (state.filterGames=== "created") && (state.filterGenres !="all")){
+                return {
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: state.created.filter(vg => (vg.Genres.find((g)=> g.name === state.filterGenres)))
+                }//Caso default 
+            }else if((action.payload === "all") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
+                return {
+                    ...state,
+                    filterOrder: action.payload,
+                    arrayFill: state.existed.filter(vg => (vg.genres.find((g)=> g === state.filterGenres)))
+                }//Caso default 
             }else {
                 return {
                     ...state,
@@ -183,79 +275,170 @@ export default function reducer(state = inicialState,action){
                 }
             
         case FILTER_RATING:
-            if((action.payload === "asc") && (state.filterGames=== "all")){
-                var ordenado = state.totalVideogames
+            if((action.payload === "asc") && (state.filterGames=== "all") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (Number(a.rating) < Number(b.rating)) {return -1;}
                     if (Number(a.rating) > Number(b.rating)) {return 1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar ascendentemente en todos mis juegos y hay un filtro de generos activado 
                     ...state,
                     filterRating: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "desc") && (state.filterGames=== "all")){
-                 var ordenado = state.totalVideogames
+            }else if((action.payload === "desc") && (state.filterGames=== "all") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (Number(b.rating) > Number(a.rating)) {return 1;}
                     if (Number(b.rating) < Number(a.rating)) {return -1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar descendentemente en todos los juegos y hay un filtro de generos activado 
                     ...state,
                     filterRating: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "asc") && (state.filterGames=== "existed")){
-                 var ordenado = state.existed
+            }else if((action.payload === "asc") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (Number(a.rating) < Number(b.rating)) {return -1;}
                     if (Number(a.rating) > Number(b.rating)) {return 1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar ascendentemente en los juegos existentes y hay un filtro de generos activado 
                     ...state,
                     filterRating: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "desc") && (state.filterGames=== "existed")){
-                 var ordenado = state.existed
+            }else if((action.payload === "desc") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (Number(b.rating) > Number(a.rating)) {return 1;}
                     if (Number(b.rating) < Number(a.rating)) {return -1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar descendentemente en los juegos existentes y hay un filtro de generos activado 
                     ...state,
                     filterRating: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "asc") && (state.filterGames=== "created")){
-                var ordenado = state.created
+            }else if((action.payload === "asc") && (state.filterGames=== "created") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (Number(a.rating) < Number(b.rating)) {return -1;}
                     if (Number(a.rating) > Number(b.rating)) {return 1;}
                     return 0;
                 }
-                return {
+                return {//Si se quiere ordenar ascendentemente en los juegos creados y hay un filtro de generos activado 
                     ...state,
                     filterRating: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else if((action.payload === "desc") && (state.filterGames=== "created")){
-                 var ordenado = state.created
+            }else if((action.payload === "desc") && (state.filterGames=== "created") && (state.filterGenres !="all")){
+                var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
                     if (Number(b.rating) > Number(a.rating)) {return 1;}
                     if (Number(b.rating) < Number(a.rating)) {return -1;}
                     return 0;
                 }
+                return {//Si se quiere ordenar descendentemente en los juegos creados y hay un filtro de generos activado 
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "asc") && (state.filterGames=== "all") && (state.filterGenres ==="all")){
+                var ordenado = state.totalVideogames.map((vg) => vg)
+                function SortArray(a, b){
+                    if (Number(a.rating) < Number(b.rating)) {return -1;}
+                    if (Number(a.rating) > Number(b.rating)) {return 1;}
+                    return 0;
+                }
+                return { //Si quiero ordenar ascendentemente en todos los juegos sin haber ningun genero cargado
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "desc") && (state.filterGames=== "all") && (state.filterGenres ==="all")){
+                var ordenado = state.totalVideogames.map((vg) => vg)
+                function SortArray(a, b){
+                    if (Number(b.rating) > Number(a.rating)) {return 1;}
+                    if (Number(b.rating) < Number(a.rating)) {return -1;}
+                    return 0;
+                }
+                return {//Si quiero ordenar descendentemente en todos los juegos sin haber ningun genero cargado
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "asc") && (state.filterGames=== "existed") && (state.filterGenres ==="all")){
+                var ordenado = state.existed.map((vg) => vg)
+                function SortArray(a, b){
+                    if (Number(a.rating) < Number(b.rating)) {return -1;}
+                    if (Number(a.rating) > Number(b.rating)) {return 1;}
+                    return 0;
+                }
+                return {//Si quiero ordenar ascendentemente en los juegos existentes sin haber ningun genero cargado
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "desc") && (state.filterGames=== "existed")  && (state.filterGenres ==="all")){
+                var ordenado = state.existed.map((vg) => vg)
+                function SortArray(a, b){
+                    if (Number(b.rating) > Number(a.rating)) {return 1;}
+                    if (Number(b.rating) < Number(a.rating)) {return -1;}
+                    return 0;
+                }
+                return {//Si quiero ordenar descendentemente en los juegos existentes sin haber ningun genero cargado
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "asc") && (state.filterGames=== "created")  && (state.filterGenres ==="all")){
+                var ordenado = state.created.map((vg) => vg)
+                function SortArray(a, b){
+                    if (Number(a.rating) < Number(b.rating)) {return -1;}
+                    if (Number(a.rating) > Number(b.rating)) {return 1;}
+                    return 0;
+                }//Si quiero ordenar ascendentemente en los juegos creados sin haber ningun genero cargado
                 return {
                     ...state,
                     filterRating: action.payload,
                     arrayFill: ordenado.sort(SortArray)
                 }
-            }else{
+            }else if((action.payload === "desc") && (state.filterGames=== "created")  && (state.filterGenres ==="all")){
+                var ordenado = state.created.map((vg) => vg)
+                function SortArray(a, b){
+                    if (Number(b.rating) > Number(a.rating)) {return 1;}
+                    if (Number(b.rating) < Number(a.rating)) {return -1;}
+                    return 0;
+                }//Si quiero ordenar descendentemente en los juegos creados sin haber ningun genero cargado
+                return {
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: ordenado.sort(SortArray)
+                }
+            }else if((action.payload === "all") && (state.filterGames=== "all") && (state.filterGenres !="all")){
+                return {
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: state.totalVideogames?.filter((vg) => {
+                        return (vg.Genres ? (vg.Genres?.find((g)=> g.name === state.filterGenres)) : (vg.genres?.includes(state.filterGenres)))})
+                }//Caso default 
+            }else if((action.payload === "all") && (state.filterGames=== "created") && (state.filterGenres !="all")){
+                return {
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: state.created.filter(vg => (vg.Genres.find((g)=> g.name === state.filterGenres)))
+                }//Caso default 
+            }else if((action.payload === "all") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
+                return {
+                    ...state,
+                    filterRating: action.payload,
+                    arrayFill: state.existed.filter(vg => (vg.genres.find((g)=> g === state.filterGenres)))
+                }//Caso default 
+            }else {
                 return {
                     ...state,
                     filterRating: action.payload

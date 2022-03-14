@@ -18,7 +18,6 @@ function All() {
   const indexOfLastGame= videogamesPerPage * currentPage;
   const indexOfFirstGame= indexOfLastGame - videogamesPerPage;
   const arrayFill = useSelector((state)=> state.arrayFill)
-   
 
   var currentGames = totalVideogames?.slice(indexOfFirstGame,indexOfLastGame)
   //Por defecto

@@ -26,16 +26,16 @@ function Created({paginado}) {
         </div>
       )
     }
-
-    if(filterGenres != 'all' && filterGenres != ''){
+   
+    if(filterGenres != 'all'){
       currentGamesDB = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
     }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 
-    if(filterOrder != 'all' && filterOrder != ''){
+    if(filterOrder != 'all'){
       currentGamesDB = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
     }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 
-    if(filterRating!= 'all' && filterRating != ''){
+    if(filterRating!= 'all'){
       currentGamesDB = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
     }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 

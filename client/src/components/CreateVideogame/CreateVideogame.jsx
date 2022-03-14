@@ -114,25 +114,27 @@ rating: 0
 
   return (
     <div className={styles.div}> 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
         <div className={styles.divInputs}>
         <label htmlFor="" className={styles.labels}>Nombre: </label>
-      <input type='text' name='name'  onChange={handleChange} value={input.name} autoComplete='off' className={styles.inputs}></input>
+      <input type='text' name='name'  onChange={handleChange} value={input.name}  className={styles.inputs}></input>
       <p className={styles.errors}>{errors.name}</p> 
       </div>
+      <div style={{display:"flex", flexDirection:"column",alignItems: "center"}}>
       <div className={styles.divDescription}>
       <label htmlFor="" className={styles.labels}>Descripción: </label>
-      <textarea name='description'  onChange={handleChange} value={input.description} autoComplete='off' className={styles.inputs}></textarea>
+      <textarea name='description'  onChange={handleChange} value={input.description}  className={styles.inputs}></textarea>
+      </div>
       <p className={styles.errors}>{errors.description}</p>
       </div>
       <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Fecha de lanzamiento: </label>
-      <input type='date' name='released' onChange={handleChange} value={input.released} autoComplete='off' className={styles.inputs}></input>
+      <input type='date' name='released' onChange={handleChange} value={input.released}  className={styles.inputs}></input>
       <p className={styles.errors}>{errors.released}</p>
       </div>
       <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Rating: </label>
-      <input type='text' name='rating' onChange={handleChange} value={input.rating} autoComplete='off' className={styles.inputs} placeholder="0-5"></input>
+      <input type='text' name='rating' onChange={handleChange} value={input.rating}  className={styles.inputs} placeholder="0-5"></input>
       <p className={styles.errors}>{errors.rating}</p>
       </div>
       <div className={styles.divInputs}>

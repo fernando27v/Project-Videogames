@@ -21,7 +21,7 @@ function GamesSearched() {
   }else{
     return (
         <div className={styles.divCards}>
-        {searchedVideogames.map((vg) => <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} 
+        {searchedVideogames?.map((vg) => <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} 
         bg={vg.background_image}  genres={vg.Genres? vg.Genres : vg.genres}/></div>)}
         </div>
   )
