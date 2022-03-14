@@ -65,13 +65,13 @@ function handleSubmit(e){
           </label>
       <select name="orderAlf" id="" className={styles.selects} onChange={handleChange}>
       <option value="all">Orden</option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
         </select>
         <select name="orderByRating" id="" className={styles.selects} onChange={handleChange}>
       <option value="all">Rating</option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
+          <option value="asc">0-5</option>
+          <option value="desc">5-0</option>
         </select>
         <select name="genres" id="" className={styles.selects} onChange={handleChange}>
         <option value="all">Genero</option>
