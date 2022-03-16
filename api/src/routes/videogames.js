@@ -43,6 +43,8 @@ async function getGames(req,res){
             res.json({error: "Videojuego no encontrado"})
             }
         }
+
+        
         
         while(allGames.length!==100){
            const responseApi = await axios.get(`https://rawg.io/api/games?key=${API_KEY}&page=${page}`)
