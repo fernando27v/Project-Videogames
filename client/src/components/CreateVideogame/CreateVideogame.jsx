@@ -27,7 +27,7 @@ const [input,setInput] = useState({
 name: "",
 description:"",
 released: "",
-rating: 0
+rating: "",
 });
 
   function handleChange(e){

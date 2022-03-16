@@ -113,9 +113,7 @@ async function postGames(req,res){
 
 
 try{
-    if(name==="" || description===""){ //Datos nulos, si no se envian a la DB lanzar un error
-        res.json({error:"Datos enviados incorrectamente"})
-    }else if(released === ""){ // Si no se envia la fecha de lanzamiento, se setea en la DB como la fecha en que fue enviado el formulario
+    if(released === "" && rating != ""){ // Si no se envia la fecha de lanzamiento, se setea en la DB como la fecha en que fue enviado el formulario
         const game  = await Videogame.create({name:name,description:description,rating:rating})
 
           platforms.forEach(async (p) =>{
@@ -127,6 +125,32 @@ try{
         const gr = await Genre.findOne({where:{name:g}})
         await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
     })
+
+    }else if(rating === "" && released != ""){// Si no se envia el rating, se setea en la DB como 0
+        const game  = await Videogame.create({name:name,description:description,released:released})
+
+        platforms.forEach(async (p) =>{
+      const pl = await Platform.findOne({where:{name:p}})
+      await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
+  
+        })
+         genres.forEach(async (g) =>{
+      const gr = await Genre.findOne({where:{name:g}})
+      await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
+        })
+    }else if(rating === "" && released === ""){
+        const game  = await Videogame.create({name:name,description:description})
+
+        platforms.forEach(async (p) =>{
+      const pl = await Platform.findOne({where:{name:p}})
+      await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
+  
+        })
+
+         genres.forEach(async (g) =>{
+      const gr = await Genre.findOne({where:{name:g}})
+      await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
+        })
 
     }else{
          const game  = await Videogame.create({name:name,description:description,rating:rating,released:released})

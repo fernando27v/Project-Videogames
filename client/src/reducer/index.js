@@ -1,5 +1,5 @@
 
-import {GET_ALLGAMES, GET_GENRES,GET_GAMEBYID,GET_PLATFORMS,FILTER_GAMES,FILTER_GENRES,FILTER_ORDER,ONSEARCH,FILTER_RATING} from '../actions/actions_types'
+import {GET_ALLGAMES, GET_GENRES,GET_GAMEBYID,GET_PLATFORMS,FILTER_GAMES,FILTER_GENRES,FILTER_ORDER,ONSEARCH,FILTER_RATING, DELETE_SEARCHED, DELETE_DETAIL} from '../actions/actions_types'
 
 const inicialState = {
     totalVideogames:[],
@@ -444,6 +444,19 @@ export default function reducer(state = inicialState,action){
                     filterRating: action.payload
                 }
             }
+
+        case DELETE_SEARCHED:
+            return{
+                ...state,
+                searchedVideogames:[]
+            }
+            
+        case DELETE_DETAIL:
+            return{
+                  ...state,
+                 gameById:[]
+                } 
+        
 
             default:
                 return state

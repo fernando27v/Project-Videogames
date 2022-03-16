@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
-import {getGameById} from '../../actions';
+import {getGameById,deleteDetail} from '../../actions';
 import styles from './Detail.module.css';
 import gif from '../loading-11.gif';
 
@@ -12,9 +12,10 @@ function Detail({id}) {
 const gameById = useSelector((state) => state.gameById)
 const dispatch = useDispatch()
 
-useEffect(()=>
-  dispatch(getGameById(id))
-
+useEffect(()=> {
+  dispatch(getGameById(id));
+  return ()=>{dispatch(deleteDetail())};
+}
 ,[dispatch])
 
 if(gameById.length===0){//Si el juego aun no esta que enseñe un gif de "Cargando"

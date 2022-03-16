@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import styles from './GamesSearched.module.css'
 import {useDispatch,useSelector} from 'react-redux'
 import gif from '../loading-11.gif';
-import Card from '../Card/Card.jsx'
+import Card from '../Card/Card.jsx';
+import {deleteSearched} from "../../actions"
 
 function GamesSearched() {
     const dispatch = useDispatch()
@@ -11,7 +12,10 @@ function GamesSearched() {
     const filterOrder = useSelector((state) => state.filterOrder)
     const searchedVideogames = useSelector((state) => state.searchedVideogames)
 
-
+useEffect(()=> {
+  return ()=> dispatch(deleteSearched())
+}
+,[dispatch])
     
   
   if(searchedVideogames.length===0){ //Enseñar un gif cargando mientras se hace la busqueda

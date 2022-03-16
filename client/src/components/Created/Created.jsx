@@ -28,7 +28,7 @@ function Created({paginado}) {
     }
    
     if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
-      currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
+      currentGamesDB = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
     }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 
     const paginate = (number)=>{

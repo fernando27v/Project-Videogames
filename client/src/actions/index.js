@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {GET_ALLGAMES, GET_GENRES , GET_GAMEBYID,
-    GET_PLATFORMS,FILTER_GAMES,FILTER_GENRES,FILTER_ORDER,ONSEARCH, FILTER_RATING} from './actions_types'
+    GET_PLATFORMS,FILTER_GAMES,FILTER_GENRES,FILTER_ORDER,ONSEARCH, FILTER_RATING,DELETE_DETAIL,DELETE_SEARCHED} from './actions_types'
 
 export function getVideogames(){
     return async function(dispatch){
@@ -12,7 +12,17 @@ export function getVideogames(){
     }
 }
 
+export function deleteDetail(){
+    return {
+        type: DELETE_DETAIL
+    }
+}
 
+export function deleteSearched(){
+    return {
+        type: DELETE_SEARCHED
+    }
+}
 
 export function getGenres(){
     return async function(dispatch){
