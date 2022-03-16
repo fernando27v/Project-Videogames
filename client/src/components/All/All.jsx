@@ -22,18 +22,9 @@ function All() {
   var currentGames = totalVideogames?.slice(indexOfFirstGame,indexOfLastGame)
   //Por defecto
 
-  if(filterGenres != 'all'){//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
+  if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
     currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
-  }
-
-  if(filterOrder != 'all'){//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
-    currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
-  }
-
-  if(filterRating != 'all'){//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
-    currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
-  }
-
+  }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 
    
   useEffect(()=>{

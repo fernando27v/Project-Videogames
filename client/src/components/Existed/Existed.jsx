@@ -20,16 +20,8 @@ function Existed({paginado}) {
     var currentGames = existed?.slice(indexOfFirstGame,indexOfLastGame);
 
 
-    if(filterGenres != 'all' && filterGenres != ''){
-      currentGames= arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
-    }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
-
-    if(filterOrder != 'all' && filterOrder != ''){
-      currentGames= arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
-    }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
-
-    if(filterRating != 'all' && filterRating != ''){
-      currentGames= arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
+    if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
+      currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
     }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 
     const paginate = (number)=>{

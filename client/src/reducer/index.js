@@ -99,8 +99,8 @@ export default function reducer(state = inicialState,action){
             if((action.payload === "asc") && (state.filterGames=== "all") && (state.filterGenres !="all")){
                 var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
-                    if (a.name < b.name) {return -1;}
-                    if (a.name > b.name) {return 1;}
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) {return -1;}
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) {return 1;}
                     return 0;
                 }
                 return {//Si se quiere ordenar ascendentemente en todos mis juegos y hay un filtro de generos activado 
@@ -111,8 +111,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "desc") && (state.filterGames=== "all") && (state.filterGenres !="all")){
                 var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
-                    if (b.name > a.name) {return 1;}
-                    if (b.name < a.name) {return -1;}
+                    if (b.name.toLowerCase() > a.name.toLowerCase()) {return 1;}
+                    if (b.name.toLowerCase() < a.name.toLowerCase()) {return -1;}
                     return 0;
                 }
                 return {//Si se quiere ordenar descendentemente en todos los juegos y hay un filtro de generos activado 
@@ -123,8 +123,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "asc") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
                 var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
-                    if (a.name < b.name) {return -1;}
-                    if (a.name > b.name) {return 1;}
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) {return -1;}
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) {return 1;}
                     return 0;
                 }
                 return {//Si se quiere ordenar ascendentemente en los juegos existentes y hay un filtro de generos activado 
@@ -135,8 +135,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "desc") && (state.filterGames=== "existed") && (state.filterGenres !="all")){
                 var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
-                    if (b.name > a.name) {return 1;}
-                    if (b.name < a.name) {return -1;}
+                    if (b.name.toLowerCase() > a.name.toLowerCase()) {return 1;}
+                    if (b.name.toLowerCase() < a.name.toLowerCase()) {return -1;}
                     return 0;
                 }
                 return {//Si se quiere ordenar descendentemente en los juegos existentes y hay un filtro de generos activado 
@@ -147,8 +147,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "asc") && (state.filterGames=== "created") && (state.filterGenres !="all")){
                 var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
-                    if (a.name < b.name) {return -1;}
-                    if (a.name > b.name) {return 1;}
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) {return -1;}
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) {return 1;}
                     return 0;
                 }
                 return {//Si se quiere ordenar ascendentemente en los juegos creados y hay un filtro de generos activado 
@@ -159,8 +159,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "desc") && (state.filterGames=== "created") && (state.filterGenres !="all")){
                 var ordenado = state.arrayFill.map((vg) => vg)
                 function SortArray(a, b){
-                    if (b.name > a.name) {return 1;}
-                    if (b.name < a.name) {return -1;}
+                    if (b.name.toLowerCase() > a.name.toLowerCase()) {return 1;}
+                    if (b.name.toLowerCase() < a.name.toLowerCase()) {return -1;}
                     return 0;
                 }
                 return {//Si se quiere ordenar descendentemente en los juegos creados y hay un filtro de generos activado 
@@ -171,8 +171,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "asc") && (state.filterGames=== "all") && (state.filterGenres ==="all")){
                 var ordenado = state.totalVideogames.map((vg) => vg)
                 function SortArray(a, b){
-                    if (a.name < b.name) {return -1;}
-                    if (a.name > b.name) {return 1;}
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) {return -1;}
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) {return 1;}
                     return 0;
                 }
                 return { //Si quiero ordenar ascendentemente en todos los juegos sin haber ningun genero cargado
@@ -183,8 +183,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "desc") && (state.filterGames=== "all") && (state.filterGenres ==="all")){
                 var ordenado = state.totalVideogames.map((vg) => vg)
                 function SortArray(a, b){
-                    if (b.name > a.name) {return 1;}
-                    if (b.name < a.name) {return -1;}
+                    if (b.name.toLowerCase() > a.name.toLowerCase()) {return 1;}
+                    if (b.name.toLowerCase() < a.name.toLowerCase()) {return -1;}
                     return 0;
                 }
                 return {//Si quiero ordenar descendentemente en todos los juegos sin haber ningun genero cargado
@@ -195,8 +195,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "asc") && (state.filterGames=== "existed") && (state.filterGenres ==="all")){
                 var ordenado = state.existed.map((vg) => vg)
                 function SortArray(a, b){
-                    if (a.name < b.name) {return -1;}
-                    if (a.name > b.name) {return 1;}
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) {return -1;}
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) {return 1;}
                     return 0;
                 }
                 return {//Si quiero ordenar ascendentemente en los juegos existentes sin haber ningun genero cargado
@@ -207,8 +207,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "desc") && (state.filterGames=== "existed")  && (state.filterGenres ==="all")){
                 var ordenado = state.existed.map((vg) => vg)
                 function SortArray(a, b){
-                    if (b.name > a.name) {return 1;}
-                    if (b.name < a.name) {return -1;}
+                    if (b.name.toLowerCase() > a.name.toLowerCase()) {return 1;}
+                    if (b.name.toLowerCase() < a.name.toLowerCase()) {return -1;}
                     return 0;
                 }
                 return {//Si quiero ordenar descendentemente en los juegos existentes sin haber ningun genero cargado
@@ -219,8 +219,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "asc") && (state.filterGames=== "created")  && (state.filterGenres ==="all")){
                 var ordenado = state.created.map((vg) => vg)
                 function SortArray(a, b){
-                    if (a.name < b.name) {return -1;}
-                    if (a.name > b.name) {return 1;}
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) {return -1;}
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) {return 1;}
                     return 0;
                 }//Si quiero ordenar ascendentemente en los juegos creados sin haber ningun genero cargado
                 return {
@@ -231,8 +231,8 @@ export default function reducer(state = inicialState,action){
             }else if((action.payload === "desc") && (state.filterGames=== "created")  && (state.filterGenres ==="all")){
                 var ordenado = state.created.map((vg) => vg)
                 function SortArray(a, b){
-                    if (b.name > a.name) {return 1;}
-                    if (b.name < a.name) {return -1;}
+                    if (b.name.toLowerCase() > a.name.toLowerCase()) {return 1;}
+                    if (b.name.toLowerCase() < a.name.toLowerCase()) {return -1;}
                     return 0;
                 }//Si quiero ordenar descendentemente en los juegos creados sin haber ningun genero cargado
                 return {
