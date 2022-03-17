@@ -21,6 +21,7 @@ function Existed({paginado}) {
 
 
     if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
+
       currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
     }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
 
@@ -30,7 +31,8 @@ function Existed({paginado}) {
 
       useEffect(()=>{
         dispatch(getVideogames())
-    },[dispatch])//Cada vez que se monte el componente actualizo mis videojuegos
+        setCurrentPage(1)
+    },[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
 
   useEffect(()=>{
     window.scrollTo(0,0);

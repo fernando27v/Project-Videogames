@@ -24,18 +24,15 @@ if(e.target.name === "buttonR"){
 }
 if(e.target.name === "genres"){
   dispatch(setFilterGenres(e.target.value))
+  //<Redirect to="/home?page=1"/>
 }
 
-if(e.target.name === "orderAlf"){
+if(e.target.name === "order"){
   dispatch(setFilterOrder(e.target.value))
 }
 
 if(e.target.name === "games"){
   dispatch(setFilterGames(e.target.value))
-}
-
-if(e.target.name === "orderByRating"){
-  dispatch(setFilterRating(e.target.value))
 }
 
 }
@@ -60,29 +57,31 @@ function handleSubmit(e){
       </div>
       
       <div className={styles.div}>
-        <label htmlFor="" className={styles.label}>
+    
+      
+               <label htmlFor="" className={styles.label}>
           Filtrar por:
           </label>
-      <select name="orderAlf" id="" className={styles.selects} onChange={handleChange}>
-      <option value="all">Orden</option>
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-        </select>
-        <select name="orderByRating" id="" className={styles.selects} onChange={handleChange}>
-      <option value="all">Rating</option>
-          <option value="asc">0-5</option>
-          <option value="desc">5-0</option>
-        </select>
         <select name="genres" id="" className={styles.selects} onChange={handleChange}>
         <option value="all">Genero</option>
           {genres? genres.results?.map((g)=> <option key={g.id} value={g.name}>{g.name}</option>) :<option >Generos no encontrados</option>}
-        </select>
-
+        </select> 
         <select name="games" id="" className={styles.selects} onChange={handleChange}>
         <option value="all">Todos</option>
           <option value="created">Creados</option>
           <option value="existed">Existentes</option>
         </select>
+        <label htmlFor="" className={styles.label}>
+          Ordenar por:
+          </label>
+        <select name="order" id="" className={styles.selects} onChange={handleChange}>
+      <option value="all">Orden</option>
+          <option value="a_z">A-Z</option>
+          <option value="z_a">Z-A</option>
+          <option value="0_5">0-5</option>
+          <option value="5_0">5-0</option>
+        </select>
+       
   
         </div>
 
