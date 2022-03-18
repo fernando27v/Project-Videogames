@@ -4,7 +4,7 @@ import {GET_ALLGAMES, GET_GENRES , GET_GAMEBYID,
 
 export function getVideogames(){
     return async function(dispatch){
-        const json = await axios.get('http://localhost:3001/videogames')
+        const json = await axios.get('/videogames')
         return dispatch({
             type: GET_ALLGAMES,
             payload: json.data
@@ -26,7 +26,7 @@ export function deleteSearched(){
 
 export function getGenres(){
     return async function(dispatch){
-        const json = await axios.get('http://localhost:3001/genres')
+        const json = await axios.get('/genres')
         return dispatch({
             type: GET_GENRES,
             payload: json.data
@@ -36,7 +36,7 @@ export function getGenres(){
 
 export function getGameById(id){
    return async function(dispatch){
-       const json = await axios.get(`http://localhost:3001/videogames/${id}`)
+       const json = await axios.get(`/videogames/${id}`)
        return dispatch({
            type: GET_GAMEBYID,
            payload: json.data
@@ -47,7 +47,7 @@ export function getGameById(id){
 
 export function getPlatforms(){
 return async function (dispatch){
-    const json = await axios.get(`http://localhost:3001/platforms`)
+    const json = await axios.get(`/platforms`)
     return dispatch({
         type: GET_PLATFORMS,
         payload: json.data
@@ -86,7 +86,7 @@ export function setFilterRating(value){
 
 export function onSearch(value){
     return async function (dispatch){
-        const json = await axios.get(`http://localhost:3001/videogames?name=${value}`)
+        const json = await axios.get(`/videogames?name=${value}`)
         return dispatch({
             type: ONSEARCH,
             payload: json.data

@@ -50,8 +50,14 @@ function handleSubmit(e){
 
   return (
     <nav className={styles.Nav}>
-      <div style={{display:"flex"}}>
-        <Link to='/home' ><img src={logo} alt="Imagen no encontrada"  /></Link>
+      <div className={styles.divIcons}>
+        <div>
+        <Link to='/home' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <span className={styles.proyect}>P</span>
+        <img src={logo} alt="Imagen no encontrada"  />
+        <span className={styles.proyect}>V</span>
+        </Link> 
+       </div>
        <button className={styles.ButtonsCreate} name="buttonR" onClick={handleChange}>Cargar Videojuegos</button>
        <Link to='/home/create/videogame'><button className={styles.ButtonsCreate}>Crear Videojuego</button></Link>
       </div>
