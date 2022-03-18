@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import styles from './Page.module.css';
 
 function Page({allVideoGames,paginate,videogamesPerPage}) {
- const filterGenres = useSelector((state) => state.filterGenres)
 
     const pageNumbers =[];
 
