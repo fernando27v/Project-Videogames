@@ -84,8 +84,8 @@ function handleSubmit(e){
       <option value="all">Orden</option>
           <option value="a_z">A-Z</option>
           <option value="z_a">Z-A</option>
-          <option value="0_5">0-5</option>
-          <option value="5_0">5-0</option>
+          <option value="0_5">Menor Rating</option>
+          <option value="5_0">Mayor Rating</option>
         </select>
        
   

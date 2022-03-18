@@ -33,7 +33,7 @@ function Created({paginado}) {
 
     if(created.length===0){
       return (
-        <div>
+        <div style={{textAlign:"center"}}>
         <h1>No se han creado videojuegos aun</h1>
         </div>
       )
