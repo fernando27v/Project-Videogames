@@ -25,7 +25,7 @@ function All() {
     
   useEffect(()=>{
     dispatch(getVideogames())
-    setCurrentPage(1)
+    
 },[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
 
 useEffect(()=>{
