@@ -21,16 +21,17 @@ function All() {
 
   var currentGames = totalVideogames?.slice(indexOfFirstGame,indexOfLastGame)
   //Por defecto
-
+  useEffect(()=>{
+    setCurrentPage(1);
+},[filterGenres])//Cada vez que haya un cambio de genero vuelvo a mi pagina 1
     
   useEffect(()=>{
     dispatch(getVideogames())
-    
-},[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
+},[dispatch])//Cada vez que se monte el componente actualizo mis videojuegos
 
 useEffect(()=>{
   window.scrollTo(0,0);
-},[currentPage])
+},[currentPage])//Cada vez que cambie de pagina vuelve al comienzo de mi web
 
   const paginate = (number)=>{
     setCurrentPage(number)

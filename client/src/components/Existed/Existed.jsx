@@ -20,13 +20,16 @@ function Existed({paginado}) {
     var currentGames = existed?.slice(indexOfFirstGame,indexOfLastGame);
 
     useEffect(()=>{
+      setCurrentPage(1);
+  },[filterGenres])//Cada vez que haya un cambio de genero vuelvo a mi pagina 1
+
+    useEffect(()=>{
       dispatch(getVideogames())
-      setCurrentPage(1)
-  },[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
+  },[dispatch])//Cada vez que se monte el componente actualizo mis videojuegos
 
     useEffect(()=>{
       window.scrollTo(0,0);
-  },[currentPage])
+  },[currentPage])//Cada vez que cambie de pagina vuelve al comienzo de mi web
 
     if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
 
