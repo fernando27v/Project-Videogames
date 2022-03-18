@@ -6,10 +6,6 @@ import Card from '../Card/Card.jsx';
 import {deleteSearched} from "../../actions"
 
 function GamesSearched() {
-    const dispatch = useDispatch()
-    const filterGames = useSelector((state) => state.filterGames)
-    const filterGenres = useSelector((state) => state.filterGenres)
-    const filterOrder = useSelector((state) => state.filterOrder)
     const searchedVideogames = useSelector((state) => state.searchedVideogames)
     
   
