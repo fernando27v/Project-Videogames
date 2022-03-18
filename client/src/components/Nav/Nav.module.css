@@ -17,7 +17,7 @@
     padding: 8px;
     font-size: 10px;
     transition: 0.5s;
-    margin: 10px;
+    margin: 5px;
     width: min-content;
 
 }
@@ -30,7 +30,7 @@
     color:white;
     font-family: 'Share Tech', sans-serif;
     font-size: 1.5rem;
-    margin:10px
+    margin:5px
 }
 
 .divLogo{
