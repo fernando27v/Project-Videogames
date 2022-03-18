@@ -19,6 +19,11 @@ function Existed({paginado}) {
     const indexOfFirstGame= indexOfLastGame - videogamesPerPage 
     var currentGames = existed?.slice(indexOfFirstGame,indexOfLastGame);
 
+    useEffect(()=>{
+      dispatch(getVideogames())
+      setCurrentPage(1)
+      window.scrollTo(0,0);
+  },[dispatch,filterGenres,currentPage])
 
     if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
 
