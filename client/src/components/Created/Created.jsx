@@ -39,11 +39,9 @@ function Created({paginado}) {
       useEffect(()=>{
         dispatch(getVideogames())
         setCurrentPage(1)
-    },[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
+        window.scrollTo(0,0);
+    },[dispatch,filterGenres,currentPage])//Cada vez que se monte el componente actualizo mis videojuegos
 
-  useEffect(()=>{
-    window.scrollTo(0,0);
-  },[currentPage])
 
   return (<div>
     {paginado && <Page paginate={paginate} allVideoGames={(filterGenres === "all" &&  filterRating === 'all' &&  filterOrder === 'all') ? created?.length : arrayFill.length} videogamesPerPage={videogamesPerPage}/>}
