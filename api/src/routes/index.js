@@ -4,7 +4,7 @@ const axios = require('axios')
 // Importacion de todos los routers;
 const genre = require('./genre')
 const {API_KEY} = process.env;
-const {getGames,getGamesById,postGames} = require('./videogames')
+const {getGames,getGamesById,postGames,deleteVideogame} = require('./videogames')
 const {getGenre} = require('./genre')
 const {getPlatform} = require('./platform')
 
@@ -15,6 +15,7 @@ const router = Router();
 router.get('/videogames', getGames)
 router.get('/videogames/:id', getGamesById)
 router.post('/videogames',postGames)
+router.get('/videogameDelete/:id',deleteVideogame)
 router.get('/genres',getGenre)
 router.get('/platforms',getPlatform)
 

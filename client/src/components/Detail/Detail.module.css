@@ -10,6 +10,18 @@
     text-decoration:underline;
 }
 
+.button{
+    cursor: pointer;
+    color: white;
+    align-self: self-end;
+    padding: 10px;
+    background-color: red;
+    font-size: 15px;
+    border: white solid;
+    border-radius: 5px;
+}
+
+
 .div{
     display:flex;
     flex-direction: column;

@@ -18,6 +18,7 @@ export function deleteDetail(){
     }
 }
 
+
 export function deleteSearched(){
     return {
         type: DELETE_SEARCHED

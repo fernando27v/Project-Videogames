@@ -18,7 +18,7 @@ async function getGames(req,res){
         if(name){// Si llego un nombre por query, guardo los resultados de mis promesas en variables
         const responseDBName = await Videogame.findAll({where:{name:{[Op.iLike]:`%${name}%`}},include:[{model:Genre,attributes:["name"],through:{attributes:[]}},
         {model:Platform,attributes:["name"],through:{attributes:[]}}]})
-        const responseApiName = await axios.get(`https://rawg.io/api/games?key=${API_KEY}&search=${name}`)
+        const responseApiName = await axios.get(`https://rawg.io/api/games?key=${API_KEY}&search=${name.trim()}`)
         if(responseApiName.data.count > 0 || responseDBName.length > 0){ 
             
             if(responseApiName.data.count > 0){
@@ -37,6 +37,8 @@ async function getGames(req,res){
             if(responseDBName.length > 0){
                 responseDBName.map((r)=> GamesByName.unshift(r))
             }
+
+            
              res.json(GamesByName)
 
             }else{
@@ -177,5 +179,24 @@ try{
    
 }
 
+async function deleteVideogame(req,res){
 
-module.exports = {getGames,getGamesById,postGames}
+   const  {id} = req.params
+try{
+ const game = await Videogame.findByPk(id);
+ await game.destroy();
+ res.json({response: "Juego borrado exitosamente"})
+}catch(err){
+    res.json({error:"Error al eliminar el juego"})
+}
+
+
+  
+
+  
+
+  
+
+}
+
+module.exports = {getGames,getGamesById,postGames,deleteVideogame}

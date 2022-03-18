@@ -4,6 +4,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import {getGameById,deleteDetail} from '../../actions';
 import styles from './Detail.module.css';
 import gif from '../loading-11.gif';
+import axios from "axios";
 
 
 function Detail({id}) {
@@ -18,6 +19,18 @@ useEffect(()=> {
 }
 ,[dispatch])
 
+async function handleDelete(e){
+  e.preventDefault()
+ const response = await axios.get(`/videogameDelete/${id}`)
+  if(response.data.response){
+    alert(`${response.data.response}`)
+  }else{
+    alert("Error al borrar el juego")
+  }
+}
+
+
+
 if(gameById.length===0){//Si el juego aun no esta que enseñe un gif de "Cargando"
   return <div className={styles.divGif}><img src={gif} alt="Cargando" /></div>
  }else if(gameById.error){
@@ -28,6 +41,7 @@ if(Array.isArray(gameById)){//Si el juego viene en un arreglo significa que es u
 
   return (
     <div className={styles.div}>
+      {isNaN(id) && <button className={styles.button} onClick={handleDelete}>X</button>}
       <p className={styles.name}>{gameById[0]?.name}</p>
       <p className={styles.text}>Descripción:</p>
       <div className={styles.text}>{gameById[0]?.description}</div>
