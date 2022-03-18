@@ -18,6 +18,8 @@
     font-size: 10px;
     transition: 0.5s;
     margin: 10px;
+    width: min-content;
+
 }
 .ButtonsCreate:hover{
     background-color: red;
@@ -28,10 +30,14 @@
     color:white;
     font-family: 'Share Tech', sans-serif;
     font-size: 1.5rem;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin:10px
 }
 
+.divLogo{
+    border: pink solid;
+    border-radius: 10px;
+    padding: 10px;
+}
 .selects{
     padding: 0.5rem;
     border-radius: 5px;

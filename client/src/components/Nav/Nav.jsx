@@ -51,7 +51,7 @@ function handleSubmit(e){
   return (
     <nav className={styles.Nav}>
       <div className={styles.divIcons}>
-        <div>
+        <div className={styles.divLogo}>
         <Link to='/home' style={{ color: 'inherit', textDecoration: 'inherit'}}>
         <span className={styles.proyect}>P</span>
         <img src={logo} alt="Imagen no encontrada"  />
