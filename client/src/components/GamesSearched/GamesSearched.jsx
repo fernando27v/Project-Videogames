@@ -11,11 +11,6 @@ function GamesSearched() {
     const filterGenres = useSelector((state) => state.filterGenres)
     const filterOrder = useSelector((state) => state.filterOrder)
     const searchedVideogames = useSelector((state) => state.searchedVideogames)
-
-useEffect(()=> {
-  return ()=> dispatch(deleteSearched())
-}
-,[dispatch])
     
   
   if(searchedVideogames.length===0){ //Enseñar un gif cargando mientras se hace la busqueda
