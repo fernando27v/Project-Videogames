@@ -22,12 +22,6 @@ function All() {
   var currentGames = totalVideogames?.slice(indexOfFirstGame,indexOfLastGame)
   //Por defecto
 
-    useEffect(()=>{
-        dispatch(getVideogames())
-        setCurrentPage(1)
-        window.scrollTo(0,0);
-    },[dispatch,filterGenres,currentPage])
-    
   const paginate = (number)=>{
     setCurrentPage(number)
   }
@@ -35,6 +29,19 @@ function All() {
   if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
     currentGames = arrayFill?.slice(indexOfFirstGame,indexOfLastGame)
   }//Si hay un cambio entre mis filtros, los juegos renderizados seran los que vienen de mi arreglo filtrado
+
+  
+   
+  useEffect(()=>{
+    dispatch(getVideogames())
+    setCurrentPage(1)
+},[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
+
+  
+
+useEffect(()=>{
+  window.scrollTo(0,0);
+},[currentPage])
 
 
   return (

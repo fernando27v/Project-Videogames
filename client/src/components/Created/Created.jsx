@@ -18,12 +18,15 @@ function Created({paginado}) {
     const indexOfLastGame= videogamesPerPage * currentPage;
     const indexOfFirstGame= indexOfLastGame - videogamesPerPage;
     var currentGamesDB = created?.slice(indexOfFirstGame,indexOfLastGame);
-      
+    
     useEffect(()=>{
-        dispatch(getVideogames())
-        setCurrentPage(1)
-        window.scrollTo(0,0);
-    },[dispatch,filterGenres,currentPage])//Cada vez que se monte el componente actualizo mis videojuegos
+      dispatch(getVideogames())
+      setCurrentPage(1)
+  },[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
+
+    useEffect(()=>{
+      window.scrollTo(0,0);
+  },[currentPage])
 
     if(created.length===0){
       return (
@@ -42,7 +45,7 @@ function Created({paginado}) {
         setCurrentPage(number)
       }
 
- 
+    
 
   return (<div>
     {paginado && <Page paginate={paginate} allVideoGames={(filterGenres === "all" &&  filterRating === 'all' &&  filterOrder === 'all') ? created?.length : arrayFill.length} videogamesPerPage={videogamesPerPage}/>}

@@ -22,8 +22,11 @@ function Existed({paginado}) {
     useEffect(()=>{
       dispatch(getVideogames())
       setCurrentPage(1)
+  },[dispatch,filterGenres])//Cada vez que se monte el componente actualizo mis videojuegos
+
+    useEffect(()=>{
       window.scrollTo(0,0);
-  },[dispatch,filterGenres,currentPage])
+  },[currentPage])
 
     if(filterGenres != 'all' || filterOrder != 'all' || filterRating != 'all'){
 
@@ -33,12 +36,6 @@ function Existed({paginado}) {
     const paginate = (number)=>{
         setCurrentPage(number)
       }
-
-      useEffect(()=>{
-        dispatch(getVideogames())
-        setCurrentPage(1)
-        window.scrollTo(0,0);
-    },[dispatch,filterGenres,currentPage])//Cada vez que se monte el componente actualizo mis videojuegos
 
   return (
     <div>
