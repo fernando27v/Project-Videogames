@@ -40,16 +40,20 @@ async function getGames(req,res){
 
             
              res.json(GamesByName)
-
+                return
             }else{
             res.json({error: "Videojuego no encontrado"})
+            return
             }
         }
 
-        
-        
-        while(allGames.length!==100){
-           const responseApi = await axios.get(`https://rawg.io/api/games?key=${API_KEY}&page=${page}`)
+    }catch(err){
+        res.send(err)
+        return
+    }
+        try{
+             while(allGames.length!==100){
+          const responseApi = await axios.get(`https://rawg.io/api/games?key=${API_KEY}&page=${page}`)
             responseApi.data.results.forEach((g)=> allGames.push({
            id:g.id,
            name:g.name,
@@ -59,17 +63,22 @@ async function getGames(req,res){
            genres: g.genres.map((g)=> g.name)
        }))
        ++page
-    }
+            }
+        
+       
        const responseDB = await Videogame.findAll({include:[{model:Genre,attributes:["name"],through:{attributes:[]}},
                                                         {model:Platform,attributes:["name"],through:{attributes:[]}}]})
                                                     
 
        
        res.status(200).json({allGames,responseDB})
+       return
+        }catch(err){
+            res.send(err)
+            return
+        }
     
-    }catch(err){
-        res.send(err)
-    }
+   
 }
 
 async function getGamesById(req,res){
@@ -81,6 +90,7 @@ async function getGamesById(req,res){
             {model:Platform,attributes:["name"],through:{attributes:[]}}]})
 
             res.json(responseDBId)
+            return
         }else{
             const responseApiId = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
         if(responseApiId.data){
@@ -93,7 +103,9 @@ async function getGamesById(req,res){
             rating:responseApiId.data.rating,
             platforms: responseApiId.data.platforms.map((p)=> p.platform.name),
             genres: responseApiId.data.genres.map((g)=> g.name)
-        })}
+        })
+            return
+        }
 
         }
 
@@ -101,6 +113,7 @@ async function getGamesById(req,res){
 
     }catch(err){
         res.json({error: "Videojuego no encontrado"})
+        return
     }
         
         
@@ -114,68 +127,96 @@ async function postGames(req,res){
     const {name,description, rating, released,genres,platforms} = req.body
 
 
-try{
+
     if(released === "" && rating != ""){ // Si no se envia la fecha de lanzamiento, se setea en la DB como la fecha en que fue enviado el formulario
+        try{
         const game  = await Videogame.create({name:name,description:description,rating:rating})
 
-          platforms.forEach(async (p) =>{
-        const pl = await Platform.findOne({where:{name:p}})
-        await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
-    
-    })
-           genres.forEach(async (g) =>{
-        const gr = await Genre.findOne({where:{name:g}})
-        await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
-    })
+                platforms.forEach(async (p) =>{
+                const pl = await Platform.findOne({where:{name:p}})
+                await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
+            
+            })
+                genres.forEach(async (g) =>{
+                const gr = await Genre.findOne({where:{name:g}})
+                await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
+            })
+            res.json(game)
+            return
+        }catch(err){
+            res.json({error:"Error al crear el videojuego"})
+            return
+            }
+       
 
     }else if(rating === "" && released != ""){// Si no se envia el rating, se setea en la DB como 0
+       
+       try{
         const game  = await Videogame.create({name:name,description:description,released:released})
 
-        platforms.forEach(async (p) =>{
-      const pl = await Platform.findOne({where:{name:p}})
-      await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
-  
-        })
-         genres.forEach(async (g) =>{
-      const gr = await Genre.findOne({where:{name:g}})
-      await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
-        })
-    }else if(rating === "" && released === ""){
-        const game  = await Videogame.create({name:name,description:description})
-
-        platforms.forEach(async (p) =>{
-      const pl = await Platform.findOne({where:{name:p}})
-      await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
-  
-        })
-
-         genres.forEach(async (g) =>{
-      const gr = await Genre.findOne({where:{name:g}})
-      await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
-        })
-
-    }else{
-         const game  = await Videogame.create({name:name,description:description,rating:rating,released:released})
-         
-         platforms.forEach(async (p) =>{
+                platforms.forEach(async (p) =>{
             const pl = await Platform.findOne({where:{name:p}})
             await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
         
-        })
-            
-        
-        genres.forEach(async (g) =>{
+                })
+                genres.forEach(async (g) =>{
             const gr = await Genre.findOne({where:{name:g}})
             await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
-        })
-    }
+                })
+            
+            res.json(game)
+            return
+       }catch(err){
+            res.json({error:"Error al crear el videojuego"})
+            return
+        }
+       
+    }else if(rating === "" && released === ""){
+        try{
+            const game  = await Videogame.create({name:name,description:description})
 
-  
-    res.json(game)
-    
-}catch(err){
-    res.json({error:"Error al crear el videojuego"})
-}
+                    platforms.forEach(async (p) =>{
+                const pl = await Platform.findOne({where:{name:p}})
+                await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
+            
+                    })
+
+                    genres.forEach(async (g) =>{
+                const gr = await Genre.findOne({where:{name:g}})
+                await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
+                    })
+                    res.json(game)
+                    return
+        }catch(err){
+            res.json({error:"Error al crear el videojuego"})
+            return
+        }
+        
+
+    }else{
+        try{
+
+        const game  = await Videogame.create({name:name,description:description,rating:rating,released:released})
+                
+                platforms.forEach(async (p) =>{
+                    const pl = await Platform.findOne({where:{name:p}})
+                    await Videogame_Platforms.create({VideogameId:game.id,PlatformId:pl.id})
+                
+                })
+                    
+                
+                genres.forEach(async (g) =>{
+                    const gr = await Genre.findOne({where:{name:g}})
+                    await Videogame_Genres.create({VideogameId:game.id,GenreId:gr.id})
+                })
+                res.json(game)
+                return
+        }catch(err){
+            res.json({error:"Error al crear el videojuego"})
+            return
+         }
+       
+    }
    
 }
 
@@ -186,8 +227,10 @@ try{
  const game = await Videogame.findByPk(id);
  await game.destroy();
  res.json({response: "Juego borrado exitosamente"})
+ return
 }catch(err){
     res.json({error:"Error al eliminar el juego"})
+    return
 }
 
 
