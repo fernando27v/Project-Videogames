@@ -6,6 +6,7 @@ import Card from '../Card/Card.jsx';
 import {deleteSearched} from "../../actions"
 
 function GamesSearched() {
+
     const searchedVideogames = useSelector((state) => state.searchedVideogames)
     
   

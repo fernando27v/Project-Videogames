@@ -83,7 +83,7 @@ rating: "",
   async function handleSubmit(e){
     e.preventDefault()
     console.log(input,genre,platform)
-    const json = await axios.post('http://localhost:3001/videogames',{
+    const json = await axios.post('/videogames',{
       name: input.name,
       description:input.description,
       released: input.released,
