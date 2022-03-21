@@ -14,21 +14,26 @@ function CreateVideogame() {
   const [genre,setGenre] = useState([]);
    const [platform,setPlatform] = useState([]);
 
-  useEffect(()=>{
-    dispatch(getGenres())
-    dispatch(getPlatforms())
-},[dispatch])
-  
-
-
-
-const [input,setInput] = useState({
+  const [input,setInput] = useState({
 
 name: "",
 description:"",
 released: "",
 rating: "",
 });
+  
+  
+   useEffect(()=>{
+    dispatch(getGenres())
+    dispatch(getPlatforms())
+    setErrors(validate({             
+      ...input}))
+},[dispatch])
+  
+
+
+
+
 
   function handleChange(e){
 
@@ -62,6 +67,7 @@ rating: "",
 
     }
   }
+
 
   function ArrayErrors(id){
     if(genre.length === 0  && id === 1){
@@ -146,6 +152,7 @@ rating: "",
         return <span key={g} className={styles.text}>|  {g}  |</span>
       })}
       </div> {/*  Mapeo de Generos para enseñarlas de manera legible */}
+      
       {ArrayErrors(1)}
       </div>
       <div className={styles.divInputs}>
@@ -157,7 +164,7 @@ rating: "",
         return <span key={p} className={styles.text}>|  {p}  |</span>
       })}
       </div> {/*  Mapeo de Plataformas para enseñarlas de manera legible */}
-        {ArrayErrors(2)}
+      {ArrayErrors(2)}
       </div>
       <button disabled={isDisabled()} className={styles.Button}>Enviar</button>
       </form>
