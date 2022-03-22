@@ -82,7 +82,7 @@
     flex-direction: row;
     align-items: center;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1090px) {
     .Nav{
         display: flex;
         flex-direction: column;
@@ -115,5 +115,13 @@
         font-size: 10px;
         transition: 0.5s;
         margin: 10px;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .divIcons{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

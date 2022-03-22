@@ -103,13 +103,6 @@ Platform.belongsToMany(Videogame, {through: 'Videogame_Platforms'});
 
 
 
-// (async ()=>{
-//   try{
-//     await Videogame.sync({force:true})
-//   }catch(err){
-//     console.error(err)
-//   }
-//   })()
 
 
 

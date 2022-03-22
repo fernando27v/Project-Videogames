@@ -40,33 +40,53 @@ if(gameById.length===0){//Si el juego aun no esta que enseñe un gif de "Cargand
 if(Array.isArray(gameById)){//Si el juego viene en un arreglo significa que es una peticion a la BD
 
   return (
-    <div className={styles.div}>
+    <div className={styles.div}  style={{backgroundImage: `url("${gameById[0].bg}")`}}>
       {isNaN(id) && <button className={styles.button} onClick={handleDelete}>X</button>}
       <p className={styles.name}>{gameById[0]?.name}</p>
-      <p className={styles.text}>Descripción:</p>
-      <div className={styles.text}>{gameById[0]?.description}</div>
+      <div className={gameById[0]?.description.length <100 ? styles.bigDiv2 : styles.bigDiv}>
+      <div className={gameById[0]?.description.length <100 ? styles.description2 : styles.description}>{gameById[0]?.description}</div>
+        <div className={styles.divs}>
+        <div className={styles.divFila}>
       <p className={styles.text}> Fecha de lanzamiento: {gameById[0]?.released}</p>
+      </div>
+      <div className={styles.divFila}></div>
       <p className={styles.text}> Rating: {gameById[0]?.rating}</p>
+      </div>
+      <div className={styles.miniDivs}>
       <p className={styles.text}>Plataformas:</p>
       <div className={styles.text}>{gameById[0].Platforms?.map((p)=> <span key={p.name}>|  {p.name}  |</span>)}</div>
+      </div>
+      <div className={styles.miniDivs}>
       <p className={styles.text}>Generos:</p>
       <div className={styles.text}>{gameById[0].Genres?.map((g)=> <span key={g.name}>|  {g.name}  |</span>)}</div>
+      </div>
+       </div>
     </div>
   )
 
 }else{  //Sino, simplemente en una peticion a la API
   return (
-    <div className={styles.div}>
-      <img src={gameById?.background_image} alt="Imagen no encontrada" className={styles.img}/>
+    <div className={styles.div} style={{backgroundImage: `url("${gameById.background_image}")`}}>
       <p className={styles.name}>{gameById?.name}</p>
-      <p className={styles.text}>Descripción:</p>
+      <div className={styles.bigDiv}>
       <div className={styles.description} dangerouslySetInnerHTML={{__html:gameById?.description}}></div>
-      <p className={styles.text}> Fecha de lanzamiento:</p> <span className={styles.text}>{gameById?.released}</span>
-      <p className={styles.text}> Rating:</p> <span className={styles.text}>{gameById?.rating}</span>
-      <p className={styles.text}>Plataformas:</p>
+      <div className={styles.divs}>
+        <div className={styles.divFila}>
+        <p className={styles.text}> Fecha de lanzamiento:</p> <span className={styles.text}>{gameById?.released} &#128197;</span>
+      </div>
+      <div className={styles.divFila}>
+        <p className={styles.text}> Rating:</p> <span className={styles.text}>{gameById?.rating} ⭐</span>
+      </div>
+      <div className={styles.miniDivs}>
+         <p className={styles.text}>Plataformas:</p>
       <div className={styles.text}>{gameById.platforms?.map((p)=> <span key={p}>|  {p}  |</span>)}</div>
-      <p className={styles.text}>Generos:</p>
+      </div>
+      <div className={styles.miniDivs}>
+         <p className={styles.text}>Generos:</p>
       <div className={styles.text}>{gameById.genres?.map((g)=> <span key={g}>|  {g}  |</span>)}</div>
+      </div>
+      </div>
+      </div>
     </div>
   )
 }

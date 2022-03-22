@@ -49,8 +49,8 @@ useEffect(()=>{
       <Page paginate={paginate} allVideoGames={(filterGenres === "all" && filterRating === 'all' && filterOrder === 'all') ? totalVideogames.length : arrayFill.length} 
     videogamesPerPage={videogamesPerPage}/>
     <div className={styles.divCards}>
-        {currentGames && currentGames.map((vg)=> <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} 
-    bg={vg.background_image} genres={vg.genres? vg.genres : vg.Genres}/></div>)}
+        {currentGames && currentGames.map((vg)=> <div key={vg.id} className={styles.card} ><Card id={vg.id} name={vg.name} 
+    bg={vg.background_image || vg.bg} genres={vg.genres || vg.Genres}/></div>)}
     </div>
     <Page paginate={paginate} allVideoGames={(filterGenres === "all" &&  filterRating === 'all' && filterOrder === 'all') ? totalVideogames.length : arrayFill.length} 
     videogamesPerPage={videogamesPerPage}/>

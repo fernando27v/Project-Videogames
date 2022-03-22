@@ -53,7 +53,7 @@ function Created({paginado}) {
   return (<div>
     {paginado && <Page paginate={paginate} allVideoGames={(filterGenres === "all" &&  filterRating === 'all' &&  filterOrder === 'all') ? created?.length : arrayFill.length} videogamesPerPage={videogamesPerPage}/>}
     <div className={styles.divCards}>
-    {currentGamesDB && currentGamesDB.map((vg) => <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} 
+    {currentGamesDB && currentGamesDB.map((vg) => <div key={vg.id} className={styles.card}><Card id={vg.id} name={vg.name} bg={vg.bg}
     genres={vg.Genres}/></div>)}
     </div>
     {paginado && <Page paginate={paginate} allVideoGames={(filterGenres === "all" &&  filterRating === 'all' &&  filterOrder === 'all') ? created?.length : arrayFill.length} videogamesPerPage={videogamesPerPage}/>}

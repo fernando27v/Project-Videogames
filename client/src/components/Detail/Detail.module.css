@@ -1,13 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap');
+
 .img{
     height: 24rem;
     width: 40rem;
+    margin:10px;
+    border-radius: 10px;
 }
 
 .name{
     font-size: 2.5rem;
     text-align-last: center;
-    color:white;
-    text-decoration:underline;
+    background-color: rgba(0, 0, 0, 0.712);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    font-family: 'Oswald', sans-serif;
 }
 
 .button{
@@ -31,16 +38,21 @@
     background-color: black;
     border: white solid;
     border-radius: 30px;
-}
+    background-image: url("https://blogs.unsw.edu.au/nowideas/files/2019/08/videojuegos-agilidad.jpg");
+    background-size: cover;
+} 
+
 
 .text{
-    color:white;
-    font-size: 1rem;
+    color:rgb(255, 255, 255);
+    font-size: 0.9rem;
     text-align: justify;
+    margin: 5px;
+    text-align-last: center;
 }
 
 .title{
-    color:white;
+    color:rgb(0, 0, 0);
     font-size: 1.3rem;
 }
 
@@ -51,23 +63,86 @@
     align-self: center;
 }
 
-.description{
-    color:white;
-    font-size: 1rem;
-    text-align: justify;
-    width: 80%;
+.divs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-@media screen and (max-width: 1000px) {
-    .img{
-        height: 9rem;
-        width: 15rem;
-    }
+.bigDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.712);
+    border-radius: 10px;
+    justify-content: space-evenly;
 
+}
+
+.bigDiv2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.712);
+    border-radius: 10px;
+    justify-content: space-evenly;
+
+}
+
+.miniDivs{
+    text-align-last: center;
+}
+
+.divFila{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.description{
+    color:rgb(255, 255, 255);
+    font-size: 0.8rem;
+    text-align: justify;
+    width: 50%;
+    margin-right: 10px;
+    padding:10px;
+    text-align-last: center;
+}
+
+.description2{
+    color:rgb(255, 255, 255);
+    font-size: 0.9rem;
+    padding:10px;
+    text-align-last: center;
+}
+
+@media screen and (max-width: 900px) {
     .name{
-        font-size: 1.5rem;
+        font-size: 2rem;
         text-align-last: center;
-        color:white;
-        text-decoration:underline;
+        background-color: rgba(0, 0, 0, 0.712);
+        border-radius: 10px;
+        padding: 10px;
+        color: white;
+        font-family: 'Oswald', sans-serif;
+    }
+    .bigDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.712);
+        border-radius: 10px;
+        justify-content: space-evenly;
+    
+    }
+    .description{
+        color:rgb(255, 255, 255);
+        font-size: 0.8rem;
+        text-align: justify;
+        width: 90%;
+        margin-right: 10px;
+        padding:10px;
+        text-align-last: center;
     }
 }

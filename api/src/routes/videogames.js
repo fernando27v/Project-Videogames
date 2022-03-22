@@ -124,13 +124,13 @@ async function getGamesById(req,res){
 
 
 async function postGames(req,res){
-    const {name,description, rating, released,genres,platforms} = req.body
+    const {name,description, rating, released,genres,platforms,bg} = req.body
 
 
 
-    if(released === "" && rating != ""){ // Si no se envia la fecha de lanzamiento, se setea en la DB como la fecha en que fue enviado el formulario
+    if(released === "" && rating !== ""){ // Si no se envia la fecha de lanzamiento, se setea en la DB como la fecha en que fue enviado el formulario
         try{
-        const game  = await Videogame.create({name:name,description:description,rating:rating})
+        const game  = await Videogame.create({name:name,description:description,rating:rating,bg:bg})
 
                 platforms.forEach(async (p) =>{
                 const pl = await Platform.findOne({where:{name:p}})
@@ -149,10 +149,10 @@ async function postGames(req,res){
             }
        
 
-    }else if(rating === "" && released != ""){// Si no se envia el rating, se setea en la DB como 0
+    }else if(rating === "" && released !== ""){// Si no se envia el rating, se setea en la DB como 0
        
        try{
-        const game  = await Videogame.create({name:name,description:description,released:released})
+        const game  = await Videogame.create({name:name,description:description,released:released,bg:bg})
 
                 platforms.forEach(async (p) =>{
             const pl = await Platform.findOne({where:{name:p}})
@@ -173,7 +173,7 @@ async function postGames(req,res){
        
     }else if(rating === "" && released === ""){
         try{
-            const game  = await Videogame.create({name:name,description:description})
+            const game  = await Videogame.create({name:name,description:description,bg:bg})
 
                     platforms.forEach(async (p) =>{
                 const pl = await Platform.findOne({where:{name:p}})
@@ -195,8 +195,7 @@ async function postGames(req,res){
 
     }else{
         try{
-
-        const game  = await Videogame.create({name:name,description:description,rating:rating,released:released})
+        const game  = await Videogame.create({name:name,description:description,rating:rating,released:released,bg:bg})
                 
                 platforms.forEach(async (p) =>{
                     const pl = await Platform.findOne({where:{name:p}})

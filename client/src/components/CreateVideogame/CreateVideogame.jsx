@@ -9,6 +9,7 @@ import styles from './CreateVideogame.module.css'
 function CreateVideogame() {
   const platforms = useSelector((state) => state.platforms);
   const genres = useSelector((state) => state.genres);
+  const [onSubmit,setSubmit] = useState(false);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const [genre,setGenre] = useState([]);
@@ -20,6 +21,7 @@ name: "",
 description:"",
 released: "",
 rating: "",
+imagen:""
 });
   
   
@@ -28,7 +30,8 @@ rating: "",
     dispatch(getPlatforms())
     setErrors(validate({             
       ...input}))
-},[dispatch])
+    setSubmit(false)
+},[dispatch,onSubmit])
   
 
 
@@ -92,6 +95,7 @@ rating: "",
     const json = await axios.post('/videogames',{
       name: input.name,
       description:input.description,
+      bg:input.imagen,
       released: input.released,
       rating: input.rating,
       genres: genre,
@@ -102,8 +106,10 @@ rating: "",
       name: "",
       description:"",
       released: "",
-      rating: ""
+      rating: "",
+      imagen:""
     })
+    setSubmit(true)
     setGenre([])
     setPlatform([])
     // Vaciado de inputs y arreglos
@@ -125,6 +131,11 @@ rating: "",
         <label htmlFor="" className={styles.labels}>Nombre: </label>
       <input type='text' name='name'  onChange={handleChange} value={input.name}  className={styles.inputs}></input>
       <p className={styles.errors}>{errors.name}</p> 
+      </div>
+      <div className={styles.divInputs}>
+      <label htmlFor="" className={styles.labels}>Imagen: </label>
+      <input type='text' name='imagen'  onChange={handleChange} value={input.imagen}  className={styles.inputs}></input>
+      <p></p>
       </div>
       <div style={{display:"flex", flexDirection:"column",alignItems: "center"}}>
       <div className={styles.divDescription}>
