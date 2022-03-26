@@ -2,23 +2,32 @@
     <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
 </p>
 
-# Individual Project - Henry Videogames
+# Project Videogames
 
 <p align="right">
   <img height="200" src="./videogame.png" />
 </p>
 
-## Objetivos del Proyecto
+## Introduction
 
-- Construir una App utlizando React, Redux, Node y Sequelize.
-- Afirmar y conectar los conceptos aprendidos en la carrera.
-- Aprender mejores prácticas.
-- Aprender y practicar el workflow de GIT.
-- Usar y practicar testing.
+<span>This is a individual project done as a first assigment, in wich join all the technologies learned at SoyHenry bootcamp.</span>
 
-## Horarios y Fechas
+## Project Objetives
 
-El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
+- Build a App with React, Redux, Node and Sequelize.
+- Afirm and conect all the learned concepts in the Carreer
+- Learn better practices.
+
+## Stack of Technologies
+
+<h3>Front End</h3>
+-HTML, CSS, React, Redux, JavaScript
+
+<h3>Back End</h3>
+-Node.JS, Express, Sequelize
+
+<h3>Database</h3>
+-PostGreSQL
 
 ## Comenzando
 
