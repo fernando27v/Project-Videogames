@@ -25,24 +25,24 @@
 ## Stack of Technologies
 
 <h3>Front End</h3>
--HTML, CSS, React, Redux, JavaScript
+HTML, CSS, React, Redux, JavaScript
 
 <h3>Back End</h3>
--Node.JS, Express, Sequelize
+Node.JS, Express, Sequelize
 
 <h3>Database</h3>
--PostGreSQL
+PostGreSQL
 
 ## Project Screens
 
-*Landing
+- Landing
 <img src="https://i.imgur.com/BV9nvqu.jpg"/>
 
-*Home
+- Home
 <img src="https://i.imgur.com/MViw16c.jpg"/>
 
-*Details
+- Details
 <img src="https://i.imgur.com/WaKbASy.jpg"/>
 
-*Form of creation
+- Form of creation
 <img src="https://i.imgur.com/ha44UvX.jpg"/>
