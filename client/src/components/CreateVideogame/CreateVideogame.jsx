@@ -160,7 +160,7 @@ imagen:""
       {genres? genres.results?.map((g)=> <option key={g.id} value={g.name}>{g.name}</option>) :<option >Generos no encontrados</option>}
       </select>
       <div className={styles.divsArray}>{genre?.map((g)=> {
-        return <span key={g} className={styles.text}>|  {g}  |</span>
+        return <span key={g} className={styles.text}>{g}</span>
       })}
       </div> {/*  Mapeo de Generos para enseñarlas de manera legible */}
       
@@ -172,7 +172,7 @@ imagen:""
       {platforms? platforms.results?.map((p)=> <option key={p.id} value={p.name}>{p.name}</option>) :<option >Plataformas no encontradas</option>}
         </select>
         <div className={styles.divsArray}>{platform?.map((p)=> {
-        return <span key={p} className={styles.text}>|  {p}  |</span>
+        return <span key={p} className={styles.text}>{p}</span>
       })}
       </div> {/*  Mapeo de Plataformas para enseñarlas de manera legible */}
       {ArrayErrors(2)}
