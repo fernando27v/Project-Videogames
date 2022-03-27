@@ -68,7 +68,7 @@ function handleSubmit(e){
                <label htmlFor="" className={styles.label}>
           Filtrar por:
           </label>
-        <select name="genres" id="" className={styles.selects} onChange={handleChange}>
+        <select name="genres" id="" className={styles.selects} onChange={handleChange} style={{width: "144px"}}>
         <option value="all">Genero</option>
           {genres? genres.results?.map((g)=> <option key={g.id} value={g.name}>{g.name}</option>) :<option >Generos no encontrados</option>}
         </select> 
