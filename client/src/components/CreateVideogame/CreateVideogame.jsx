@@ -36,7 +36,16 @@ imagen:""
 
 
 
-
+  function handleClick(e){
+    if(e.target.name === "genres"){
+      //Si el genero ya se encuentra no lo guardo, y lo borro de mi arreglo
+         setGenre((state)=> state.filter((g)=> g != e.target.value))
+    }else if(e.target.name === "platforms"){
+            //Si la plataforma ya se encuentra no la guardo, y la borro de mi arreglo
+         setPlatform((state)=> state.filter((p)=> p != e.target.value))
+       }
+ 
+  }
 
   function handleChange(e){
 
@@ -157,10 +166,11 @@ imagen:""
       <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Generos: </label>
       <select name="genres" onChange={handleChange} className={styles.inputs}>
+      <option disabled={true} defaultValue={true} selected="selected">Generos</option>
       {genres? genres.results?.map((g)=> <option key={g.id} value={g.name}>{g.name}</option>) :<option >Generos no encontrados</option>}
       </select>
       <div className={styles.divsArray}>{genre?.map((g)=> {
-        return <span key={g} className={styles.text}>{g}</span>
+        return <button key={g} value={g} name="genres" className={styles.text} onClick={handleClick}>{g}</button>
       })}
       </div> {/*  Mapeo de Generos para enseñarlas de manera legible */}
       
@@ -169,10 +179,11 @@ imagen:""
       <div className={styles.divInputs}>
       <label htmlFor="" className={styles.labels}>Plataformas: </label>
       <select name="platforms" onChange={handleChange} className={styles.inputs}>
+        <option disabled={true} selected="selected">Plataformas</option>
       {platforms? platforms.results?.map((p)=> <option key={p.id} value={p.name}>{p.name}</option>) :<option >Plataformas no encontradas</option>}
         </select>
         <div className={styles.divsArray}>{platform?.map((p)=> {
-        return <span key={p} className={styles.text}>{p}</span>
+        return <button key={p} value={p} name="platforms" className={styles.text} onClick={handleClick}>{p}</button>
       })}
       </div> {/*  Mapeo de Plataformas para enseñarlas de manera legible */}
       {ArrayErrors(2)}

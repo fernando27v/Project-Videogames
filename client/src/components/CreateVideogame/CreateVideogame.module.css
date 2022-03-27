@@ -41,12 +41,17 @@
     background-color: #282828;
     margin: 4px;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 0.4rem;
-    border: 1px solid;
+    border: 2px solid;
     border-color: #727272;
     border-radius: 10px;
     display: inline-block;
+    transition: 0.5s;
+}
+
+.text:hover{
+    background-color: red;
 }
 
 .Button{
