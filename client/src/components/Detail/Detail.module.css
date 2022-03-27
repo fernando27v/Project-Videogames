@@ -46,7 +46,6 @@
 .text{
     color:rgb(255, 255, 255);
     font-size: 0.9rem;
-    text-align: justify;
     margin: 5px;
     text-align-last: center;
 }
@@ -115,6 +114,18 @@
     font-size: 0.9rem;
     padding:10px;
     text-align-last: center;
+}
+
+.genresAndPlatforms{
+    background-color: rgba(0, 0, 0, 0.555);
+    margin: 4px;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.4rem;
+    border: 1px solid;
+    border-color: #727272;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 @media screen and (max-width: 900px) {

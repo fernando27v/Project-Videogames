@@ -1,6 +1,7 @@
 import React from 'react';
 import Page from '../Page/Page.jsx';
 import {useEffect,useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import {getVideogames} from '../../actions';
 import Card from '../Card/Card.jsx';
@@ -8,7 +9,8 @@ import styles from './All.module.css';
 
 function All() {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const totalVideogames = useSelector((state) => state.totalVideogames);
   const filterGenres = useSelector((state) => state.filterGenres);
   const filterOrder = useSelector((state) => state.filterOrder);
@@ -23,6 +25,7 @@ function All() {
   //Por defecto
   useEffect(()=>{
     setCurrentPage(1);
+    history.push("/home?page=1");
 },[filterGenres])//Cada vez que haya un cambio de genero vuelvo a mi pagina 1
     
   useEffect(()=>{

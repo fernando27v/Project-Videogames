@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import {NavLink} from 'react-router-dom'
 import styles from './Page.module.css';
 
 function Page({allVideoGames,paginate,videogamesPerPage}) {
@@ -16,9 +16,7 @@ function Page({allVideoGames,paginate,videogamesPerPage}) {
                 {
                     pageNumbers.map((number)=> {
                         return <ul className={styles.ul} key={number}>
-                          <a onClick={()=> paginate(number)} key={number} className={styles.a}>
-                            {number}
-                            </a>
+                          <NavLink exact  to={`/home?page=${number}`}  onClick={()=> paginate(number)} className={styles.a} >{number}</NavLink>
                         </ul>
                     })
                 }

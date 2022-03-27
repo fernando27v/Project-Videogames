@@ -1,13 +1,15 @@
 import React from 'react';
 import styles from './Created.module.css';
 import Card from '../Card/Card';
+import {useHistory} from 'react-router-dom'
 import { useSelector,useDispatch} from 'react-redux';
 import {useState,useEffect} from 'react';
 import Page from '../Page/Page';
 import {getVideogames} from '../../actions';
 
 function Created({paginado}) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const history = useHistory();
     const created = useSelector((state) => state.created);
     const arrayFill = useSelector((state)=> state.arrayFill)
     const filterGenres = useSelector((state) => state.filterGenres);
@@ -21,6 +23,7 @@ function Created({paginado}) {
     
     useEffect(()=>{
       setCurrentPage(1);
+       history.push("/home?page=1");
   },[filterGenres])//Cada vez que haya un cambio de genero vuelvo a mi pagina 1
 
     useEffect(()=>{

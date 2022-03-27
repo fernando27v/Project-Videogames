@@ -12,4 +12,9 @@
     padding: 1rem;
     background-color: black;
     border-radius: 20px;
+    transition: 0.5s;
 }
+.card:hover{
+ box-shadow: 0 0 5px 0.5rem red;
+ margin-bottom: 2.5rem;
+ }

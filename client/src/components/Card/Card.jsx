@@ -12,9 +12,9 @@ function Card({id , name ,bg ,genres}) {
       </Link>
       <div>{genres?.map((g)=> {
       if(typeof g === 'object'){
-        return <span key={`${g.name}${counter++}`} className={styles.text}>| {g.name} |</span>
+        return <span key={`${g.name}${counter++}`} className={styles.text}> {g.name} </span>
       }else{
-        return <span key={`${g}${counter++}`} className={styles.text}>|  {g}  |</span>
+        return <span key={`${g}${counter++}`} className={styles.text}>  {g}  </span>
       }
       })}</div>
     </div>

@@ -18,6 +18,13 @@
 }
 
 .text{
-    color:white;
+    background-color: #282828;
+    margin: 4px;
+    color: white;
     font-size: 0.7rem;
+    padding: 0.4rem;
+    border: 1px solid;
+    border-color: #727272;
+    border-radius: 10px;
+    display: inline-block;
 }
