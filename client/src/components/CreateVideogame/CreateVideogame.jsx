@@ -142,7 +142,7 @@ imagen:""
       <p className={styles.errors}>{errors.name}</p> 
       </div>
       <div className={styles.divInputs}>
-      <label htmlFor="" className={styles.labels}>Imagen: </label>
+      <label htmlFor="" className={styles.labels}>URL Portada: </label>
       <input type='text' name='imagen'  onChange={handleChange} value={input.imagen}  className={styles.inputs}></input>
       <p></p>
       </div>
